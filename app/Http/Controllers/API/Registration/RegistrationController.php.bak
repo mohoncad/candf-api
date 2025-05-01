@@ -1,0 +1,103 @@
+<?php
+
+
+namespace App\Http\Controllers\API\Registration;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use App\User;
+use App\Models\Company\Company;
+use \Exception;
+
+class RegistrationController extends Controller
+{
+    public function Register(Request $request)
+    {
+
+        $company_name = $request->input('company_name');
+        $company_size = $request->input('company_size');
+        $user_full_name = $request->input('full_name');
+        $email = $request->input('email');
+        $phone_number = $request->input('phone_number');
+        $password = $request->input('password');
+        $CreatedAt = date("Y-m-d H:i:s", time());
+        $OTP_KEY = OtpController::NewOtpKey($email);
+        $UserExists = User::where('email', '=', $email)->exists();
+        if ($UserExists) {
+
+            return response()->json([
+                'success' => false,
+                'error_code' => 'DUPLICATE',
+                'message' => 'You have entered a duplicate email address!',
+            ], 200);
+
+        } else {
+            //try to register the company user and the company
+            try {
+                $UserInsert = User::Insert([
+                    "CompanyID" => 0,
+                    "IsMasterUser" => 1,
+                    "EmailVerified" => 0,
+                    "IsActive" => 1,
+                    "FullName" => $user_full_name,
+                    "Password" => md5($password),
+                    "email" => $email,
+                    "PhoneNumber1" => $phone_number,
+                    "OTP_KEY" => $OTP_KEY,
+                    "CreatedAt" => $CreatedAt
+                ]);
+                if ($UserInsert) {
+                    $master_user = User::where('email', $email)->get()[0];
+                    Company::Insert([
+                        "IsActive" => 1,
+                        "Name" => $company_name,
+                        "Size" => $company_size,
+                        "MasterUserID" => $master_user->id,
+                        "IsDemo" => 1,
+                        "CreatedBy" => $master_user->id,
+                        "CreatedAt" => $CreatedAt
+                    ]);
+                    $company = Company::where('MasterUserID', $master_user->id)->first();
+                    User::where('id', $master_user->id)->update([
+                        "CompanyID" => $company->id
+                    ]);
+                }
+                //
+                //
+                //Here send the verification link to the email address provided by the user
+                // $company_otp_key (OTP KEY)
+                //Link Should be like: http://c&f/verify_email?otp_token=OTP_KEY
+                //
+                //
+                try {
+                    //OtpController::EmailOtpKey($email, $OTP_KEY);
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Registration Successful!',
+                    ], 200);
+
+                } catch (Exception $e) {
+
+                    return response()->json([
+                        'success' => false,
+                        'error_code' => 'MAIL_ERROR',
+                        'message' => 'Registration Successful! But There was a problem sending the verification code! ' . $e->getMessage(),
+                    ], 200);
+
+                }
+            } catch (QueryException $e) {
+
+                return response()->json([
+                    'success' => false,
+                    'error_code' => 'MAIL_ERROR',
+                    'message' => 'Registration Failed! ' . $e->getMessage(),
+                ], 200);
+
+
+            }
+        }
+
+    }
+}

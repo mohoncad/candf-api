@@ -1,0 +1,125 @@
+//import and export bill post
+{
+    "user_id" : "8",                     
+    "bill_type" : "Import",
+    "bill_code" : "IMBQFL000339",
+    "client_id" : "6",
+    "client_address" : "Dhaka",
+    "supplier_id" : "79",
+    "client_bank_name" : "NRB Bank",
+    "port_id" : "5",
+    "carrier" : "ABC",
+    "mawb_no" : "160-15342283",
+    "mawb_date" : "16/01/2020",
+    "hawb_no" : "160-15342283",
+    "hawb_date" : "16/01/2020",
+    "lc_no" : "160-15342283",
+    "lc_date" : "16/01/2020",
+    "be_no" : "160-15342283",
+    "be_date" : "16/01/2020",
+    "invoice_no" : "160-15342283",
+    "invoice_date" : "16/01/2020",
+    "commodity" : "FABRICS",
+    "currency_id" : "26",
+    "currency_rate" : "84.50",
+    "invoice_value" : "776.50",
+    "a_value" : "965014",
+    "gross_weight" : "873.47",
+    "net_weight" : "37",
+    "unit_id" : "11",
+    "quantity" : "6",
+    "goods_description" : "FABRICS",
+    "enc_docs" : "enc_docs",
+    "particulars_charges" : "particulars_charges",
+    "attachments" : "attachments",
+    "total_amount" : "10000",
+    "paid_amount" : "5000",
+    "due_amount" : "5000",
+    "full_paid" : "1",
+    "bill_note" : "bill_note",
+    "job_date" : "16/01/2020",
+    "bill_dd" : "16",
+    "bill_mm" : "02",
+    "bill_yyyy" : "2019",
+    "bill_date" : "16/02/2019",
+    "bill_timestamp" : "160010101"
+}
+
+
+
+
+//Transport bill post
+{
+    "user_id" : "8",                     
+    "bill_code" : "TPB_QFL000339",
+    "client_id" : "10",
+    "delivery_challan_no" : "17102",
+    "delivery_challan_date" : "21/12/2009",
+    "transport_challan_no" : "1712221",
+    "transport_challan_date" : "21/12/2009",
+    "lc_no" : "160-15342283",
+    "lc_date" : "16/01/2020",
+    "be_no" : "160-15342283",
+    "be_date" : "16/01/2020",
+    "holding_no" : "160-15342283",
+    "holding_date" : "16/01/2020",
+    "job_no" : "21",
+    "job_date" : "21/12/2009",
+    "awb_no" : "8450",
+    "description" : "FABRICS",
+    "unit_id" : "11",
+    "quantity" : "6",
+    "transport_type" : "TAXI",   
+    "vehicle_reg_no" : "DM NA 17-6264",
+    "driver_name" : "rakib",
+    "from_place" : "DEPZ",
+    "to_place" : "AFWL",
+    "particulars_charges" : "[{'head_name':'DEPZ TO OKM FACTORY','amount' : '3000.00'}]",
+    "total_amount" : "10000",
+    "paid_amount" : "5000",
+    "due_amount" : "5000",
+    "full_paid" : "1",
+    "bill_dd" : "16",
+    "bill_mm" : "02",
+    "bill_yyyy" : "2019",
+    "bill_date" : "16/02/2019",
+    "bill_timestamp" : "160010101"
+}
+
+
+
+//bill summary post
+{
+    "summary_id" : "37",
+    "user_id" : "4",
+    "summary_code" : "SUM_IMB_QFL00100",
+    "bill_type" : "Import",
+    "client_id" : "6",
+    "from_date" : "01/12/2018",
+    "to_date" : "18/01/2020",
+    "subject" : "Q point fashion",
+    "invoiceList" : ["161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","194","195","196","197","198","199","200","201","202","203","204"],
+    "summary_date" : "18/01/2020",
+    "summary_dd" : "18",
+    "summary_mm" : "01",
+    "summary_yyyy" : "20",
+    "summary_timestamp" : "12345678"
+}
+
+
+//bill payment post
+{
+    "bill_pmt_code" : "CPMT_SCL00010",
+    "user_id" : "2",
+    "client_id" : "2",
+    "bill_list_source" : "[{'bill_id':'6','bill_type':'Transport','bill_code':'TPB_ASKML00003','bill_date':'19/02/2020','total_amount':'3000.00','paid_amount':'0.00','due_amount':'3000.00'},{'bill_id':'6','bill_type':'Transport','bill_code':'TPB_ASKML00003','bill_date':'19/02/2020','total_amount':'3000.00','paid_amount':'0.00','due_amount':'3000.00'}]",
+    "total_amount" : "2500.00",
+    "less_amount" : "0.00",
+    "payment_amount" : "2500.00",
+    "pmt_type" : "cash",
+    "pmt_dd" : "02",
+    "pmt_mm" : "03",
+    "pmt_yyyy" : "2020",
+    "pmt_date" : "02/03/2020",
+    "pmt_timestamp" : "15831243"
+}
